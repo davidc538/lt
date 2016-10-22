@@ -118,7 +118,7 @@ void lt_vector_bubble_sort(lt_vector* da, int (comparator)(void*, void*))
 
 			compare = comparator(left, right);
 
-			if (compare < 0)
+			if (compare > 0)
 			{
 				lt_vector_random_access_set(da, j, right);
 				lt_vector_random_access_set(da, j + 1, left);

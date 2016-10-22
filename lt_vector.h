@@ -21,6 +21,7 @@ void lt_vector_insert(lt_vector* da, void* data);
 void* lt_vector_random_access(lt_vector* da, size_t index);
 void lt_vector_random_access_set(lt_vector* da, size_t index, void* to_set);
 void* lt_vector_binary_search(lt_vector* da, int (comparator)(void*, void*), void* to_find);
+void lt_vector_bubble_sort_range(lt_vector* da, int (comparator)(void*, void*), size_t start, size_t end);
 void lt_vector_bubble_sort(lt_vector* da, int (comparator)(void*, void*));
 
 size_t lt_vector_size(lt_vector* da);

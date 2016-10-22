@@ -101,17 +101,15 @@ void* lt_vector_binary_search(lt_vector* da, int (comparator)(void*, void*), voi
 	return NULL;
 }
 
-void lt_vector_bubble_sort(lt_vector* da, int (comparator)(void*, void*))
+void lt_vector_bubble_sort_range(lt_vector* da, int (comparator)(void*, void*), size_t start, size_t end)
 {
-	register size_t i, j, size;
-	register void* left,* right;
-	register int compare;
+	size_t i, j;
+	void* left,* right;
+	int compare;
 
-	size = lt_vector_size(da);
-
-	for (i = 0; i < size - 1; i++)
+	for (i = start; i < end - 1; i++)
 	{
-		for (j = 0; j < size - i - 1; j++)
+		for (j = start; j < end - i - 1; j++)
 		{
 			left = lt_vector_random_access(da, j);
 			right = lt_vector_random_access(da, j + 1);
@@ -125,6 +123,13 @@ void lt_vector_bubble_sort(lt_vector* da, int (comparator)(void*, void*))
 			}
 		}
 	}
+}
+
+void lt_vector_bubble_sort(lt_vector* da, int (comparator)(void*, void*))
+{
+	size_t end = lt_vector_size(da);
+
+	lt_vector_bubble_sort_range(da, comparator, 0, end);
 }
 
 size_t lt_vector_size(lt_vector* da)

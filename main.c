@@ -35,10 +35,8 @@ int main(int argc, char** argv)
 
 	found = lt_vector_binary_search(&da, my_comparator, (void*)42);
 
-	printf("found: %I", (long long)found);
+	printf("found: %I64d\r\n", (long long)found);
 
 	lt_vector_each(&da, my_func, NULL);
 	lt_vector_free(&da);
-
-	getchar();
 }

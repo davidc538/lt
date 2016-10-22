@@ -70,8 +70,6 @@ void test_lt_list(void)
 		p->age = i;
 		
 		lt_list_attach_back(&list, p);
-
-		lt_list_each(&list, my_list_func, NULL);
 	}
 
 	printf("testing each:\r\n");

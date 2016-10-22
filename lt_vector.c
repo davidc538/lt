@@ -44,9 +44,9 @@ void lt_vector_memcpy(void** new_ptr, void** old_ptr, size_t size)
 		new_ptr[i] = old_ptr[i];
 }
 
-void lt_vector_expand(lt_vector* da, size_t new_cap)
+void lt_vector_expand(lt_vector* da, size_t factor)
 {
-	size_t cap = da->cap * new_cap;
+	size_t new_cap = da->cap * factor;
 
 	void** new_ptr = malloc(sizeof(void*) * new_cap);
 
@@ -55,7 +55,7 @@ void lt_vector_expand(lt_vector* da, size_t new_cap)
 	free(da->ptr);
 
 	da->ptr = new_ptr;
-	da->cap = cap;
+	da->cap = new_cap;
 }
 
 void lt_vector_insert(lt_vector* da, void* data)

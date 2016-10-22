@@ -28,12 +28,14 @@ int main(int argc, char** argv)
 	lt_vector da;
 	lt_vector_init(&da);
 
-	for (unsigned int i = 0; i < 256; i++)
+	for (unsigned int i = 256; i > 0; i--)
 		lt_vector_insert(&da, (void*)(long long)(i));
+
+	lt_vector_bubble_sort(&da, my_comparator);
 
 	found = lt_vector_binary_search(&da, my_comparator, (void*)42);
 
-	printf("found: %I64d", (long long)found);
+	printf("found: %I", (long long)found);
 
 	lt_vector_each(&da, my_func, NULL);
 	lt_vector_free(&da);

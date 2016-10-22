@@ -103,9 +103,9 @@ void* lt_vector_binary_search(lt_vector* da, int (comparator)(void*, void*), voi
 
 void lt_vector_bubble_sort(lt_vector* da, int (comparator)(void*, void*))
 {
-	size_t i, j, size;
-	void* left,* right;
-	int compare;
+	register size_t i, j, size;
+	register void* left,* right;
+	register int compare;
 
 	size = lt_vector_size(da);
 

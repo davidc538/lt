@@ -72,6 +72,17 @@ void test_lt_list(void)
 		lt_list_attach_back(&list, p);
 	}
 
+	for (int i = 12; i > 6; i--)
+	{
+		person* p = malloc(sizeof(person));
+
+		p->age = i;
+
+		lt_list_attach_front(&list, p);
+
+		lt_list_each(&list, my_list_func, NULL);
+	}
+
 	printf("testing each:\r\n");
 	lt_list_each(&list, my_list_func, NULL);
 	printf("done.");

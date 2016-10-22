@@ -44,10 +44,9 @@ void lt_vector_memcpy(void** new_ptr, void** old_ptr, size_t size)
 		new_ptr[i] = old_ptr[i];
 }
 
-// @private
-void lt_vector_expand(lt_vector* da)
+void lt_vector_expand(lt_vector* da, size_t new_cap)
 {
-	size_t new_cap = da->cap * 2;
+	size_t cap = da->cap * new_cap;
 
 	void** new_ptr = malloc(sizeof(void*) * new_cap);
 
@@ -56,15 +55,45 @@ void lt_vector_expand(lt_vector* da)
 	free(da->ptr);
 
 	da->ptr = new_ptr;
-	da->cap = new_cap;
+	da->cap = cap;
 }
 
 void lt_vector_insert(lt_vector* da, void* data)
 {
 	if (da->size >= da->cap)
-		lt_vector_expand(da);
+		lt_vector_expand(da, 2);
 
 	da->ptr[da->size++] = data;
+}
+
+void* lt_vector_random_access(lt_vector* da, size_t index)
+{
+	return da->ptr[index];
+}
+
+void* lt_vector_binary_search(lt_vector* da, int (comparator)(void*, void*), void* to_find)
+{
+	size_t min, max, mid;
+	int result;
+	void* current;
+
+	min = 0;
+	max = da->size;
+
+	while (min != max)
+	{
+		mid = (min + max) / 2;
+
+		current = lt_vector_random_access(da, mid);
+
+		result = comparator(current, to_find);
+
+		if (result < 0) min = mid;
+		else if (result > 0) max = mid;
+		else if (result == 0) return current;
+	}
+
+	return NULL;
 }
 
 size_t lt_vector_size(lt_vector* da)

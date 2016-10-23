@@ -29,6 +29,12 @@ void lt_list_attach_between(lt_list* da, lt_list_node* left, lt_list_node* right
 void lt_list_attach_back(lt_list* da, void* list_node);
 void lt_list_attach_front(lt_list* da, void* list_node);
 
+void* lt_list_peek_front(lt_list* da);
+void* lt_list_peek_back(lt_list* da);
+
+void* lt_list_pop_front(lt_list* da);
+void* lt_list_pop_back(lt_list* da);
+
 size_t lt_list_size(lt_list* da);
 
 #endif // LT_LIST_H

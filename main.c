@@ -85,6 +85,37 @@ void test_lt_list(void)
 		lt_list_each(&list, my_list_func, NULL);
 	}
 
+	printf("starting pop_front\r\n");
+
+	while (lt_list_size(&list) > 0)
+	{
+		person* p = lt_list_pop_front(&list);
+
+		printf("age: %i\r\n", p->age);
+
+		free(p);
+	}
+
+	for (int i = 12; i > 0; i--)
+	{
+		person* p = malloc(sizeof(person));
+
+		p->age = i;
+
+		lt_list_attach_front(&list, p);
+	}
+
+	printf("starting pop_back:\r\n");
+
+	while (lt_list_size(&list) > 0)
+	{
+		person* p = lt_list_pop_back(&list);
+
+		printf("age: %i\r\n", p->age);
+
+		free(p);
+	}
+
 	printf("testing each:\r\n");
 	lt_list_each(&list, my_list_func, NULL);
 	printf("done.");

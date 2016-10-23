@@ -68,6 +68,47 @@ void lt_list_attach_front(lt_list* da, void* list_node)
 		lt_list_attach_between(da, (lt_list_node*)da, da->start, list_node);
 }
 
+void* lt_list_peek_front(lt_list* da)
+{
+	return da->start;
+}
+
+void* lt_list_peek_back(lt_list* da)
+{
+	return da->end;
+}
+
+// @private
+void lt_list_attach_nodes(lt_list* da, lt_list_node* left, lt_list_node* right)
+{
+	left->next = right;
+	right->prev = left;
+}
+
+void* lt_list_pop_front(lt_list* da)
+{
+	lt_list_node* node = da->start;
+
+	da->start = da->start->next;
+	da->start->prev = (lt_list_node*)da;
+
+	da->size--;
+
+	return node;
+}
+
+void* lt_list_pop_back(lt_list* da)
+{
+	lt_list_node* node = da->end;
+
+	da->end = da->end->prev;
+	da->end->next = (lt_list_node*)da;
+
+	da->size--;
+
+	return node;
+}
+
 size_t lt_list_size(lt_list* da)
 {
 	return da->size;

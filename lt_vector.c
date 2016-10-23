@@ -1,10 +1,9 @@
 #include "lt_vector.h"
-
-#include <malloc.h>
+#include "lt_lib.h"
 
 lt_vector* lt_vector_new()
 {
-	lt_vector* vec = malloc(sizeof(lt_vector));
+	lt_vector* vec = lt_malloc(sizeof(lt_vector));
 
 	lt_vector_init(vec);
 
@@ -15,20 +14,20 @@ void lt_vector_init(lt_vector* da)
 {
 	const static int initial_size = 2;
 
-	da->ptr = malloc(sizeof(void*) * initial_size);
+	da->ptr = lt_malloc(sizeof(void*) * initial_size);
 	da->cap = initial_size;
 	da->size = 0;
 }
 
 void lt_vector_free(lt_vector* da)
 {
-	free(da->ptr);
+	lt_free(da->ptr);
 }
 
 void lt_vector_delete(lt_vector* da)
 {
 	lt_vector_free(da);
-	free(da);
+	lt_free(da);
 }
 
 void lt_vector_each(lt_vector* da, void (func)(void*, void*), void* data)
@@ -48,11 +47,11 @@ void lt_vector_expand(lt_vector* da, size_t factor)
 {
 	size_t new_cap = da->cap * factor;
 
-	void** new_ptr = malloc(sizeof(void*) * new_cap);
+	void** new_ptr = lt_malloc(sizeof(void*) * new_cap);
 
 	lt_vector_memcpy(new_ptr, da->ptr, da->cap);
 
-	free(da->ptr);
+	lt_free(da->ptr);
 
 	da->ptr = new_ptr;
 	da->cap = new_cap;

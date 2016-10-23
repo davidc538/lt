@@ -1,7 +1,7 @@
 #ifndef LT_VECTOR_H
 #define LT_VECTOR_H
 
-#include <malloc.h>
+#include "lt_lib.h"
 
 typedef struct
 {

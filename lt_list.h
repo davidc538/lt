@@ -1,7 +1,7 @@
 #ifndef LT_LIST_H
 #define LT_LIST_H
 
-#include <malloc.h>
+#include "lt_lib.h"
 
 #define LT_LIST_HEADER lt_list_node header;
 

@@ -1,10 +1,9 @@
 #include "lt_list.h"
-
-#include <malloc.h>
+#include "lt_lib.h"
 
 lt_list* lt_list_new()
 {
-	lt_list* list = malloc(sizeof(lt_list));
+	lt_list* list = lt_malloc(sizeof(lt_list));
 
 	lt_list_init(list);
 
@@ -20,14 +19,19 @@ void lt_list_init(lt_list* da)
 
 void lt_list_free(lt_list* da)
 {
-	// TODO:
-	// use lt_list_each to free all elements?
+	lt_list_node* tmp;
+
+	while (lt_list_size(da) > 0)
+	{
+		tmp = lt_list_pop_front(da);
+		lt_free(tmp);
+	}
 }
 
 void lt_list_delete(lt_list* da)
 {
 	lt_list_free(da);
-	free(da);
+	lt_free(da);
 }
 
 void lt_list_each(lt_list* da, void (func)(void*, void*), void* data)

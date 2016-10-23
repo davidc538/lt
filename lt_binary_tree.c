@@ -6,6 +6,8 @@ lt_binary_tree* lt_binary_tree_new(int(*comparator)(void*, void*))
 	lt_binary_tree* tree = malloc(sizeof(lt_binary_tree));
 
 	lt_binary_tree_init(tree, comparator);
+
+	return tree;
 }
 
 void lt_binary_tree_init(lt_binary_tree* da, int(*comparator)(void*, void*))
@@ -36,8 +38,8 @@ void lt_binary_tree_node_init(void* da)
 
 void lt_binary_tree_insert(lt_binary_tree* da, void* node)
 {
-	int compare;
-	lt_binary_tree_node* last,* current;
+	register int compare;
+	register lt_binary_tree_node* last,* current;
 
 	lt_binary_tree_node_init(node);
 
@@ -51,6 +53,8 @@ void lt_binary_tree_insert(lt_binary_tree* da, void* node)
 
 	current = da->root;
 
+	last = current;
+
 	while (current != NULL)
 	{
 		compare = da->comparator(da->root, node);
@@ -59,10 +63,16 @@ void lt_binary_tree_insert(lt_binary_tree* da, void* node)
 
 		if (compare < 0)
 			current = current->left;
-		if (compare > 0)
+		else if (compare > 0)
 			current = current->right;
-		else;
+		else
+			current = current->right;
 	}
 
-
+	if (compare < 0)
+		last->left = node;
+	else if (compare > 0)
+		last->right = node;
+	else
+		last->right = node;
 }

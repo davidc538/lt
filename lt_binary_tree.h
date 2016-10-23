@@ -3,7 +3,7 @@
 
 #include "lt_lib.h"
 
-#define LT_TREE_HEADER lt_tree_node header;
+#define LT_TREE_HEADER lt_binary_tree_node header;
 
 typedef struct lt_binary_tree_node
 {

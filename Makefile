@@ -10,7 +10,8 @@ release_gcc: main.c lt_vector.c lt_vector.h lt_list.c lt_list.h lt_lib.c lt_lib.
 	gcc main.c lt_vector.c lt_list.c lt_lib.c -Os -o lt_release_gcc
 
 debug_clang: main.c lt_vector.c lt_vector.h lt_list.c lt_list.h lt_lib.c lt_lib.h
-	clang main.c lt_vector.c lt_list.c lt_lib.c -g -o lt_debug_clang
+	clang -fsanitize=memory main.c lt_vector.c lt_list.c lt_lib.c -g -o lt_debug_clang
 
 release_clang: main.c lt_vector.c lt_vector.h lt_list.c lt_list.h lt_lib.c lt_lib.h
-	clang main.c lt_vector.c lt_list.c lt_lib.c -Os -o lt_release_clang
+	clang -fsanitize=memory main.c lt_vector.c lt_list.c lt_lib.c -Os -o lt_release_clang
+

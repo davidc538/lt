@@ -92,6 +92,8 @@ void test_lt_list(void)
 
 int main(int argc, char** argv)
 {
+	size_t l = sizeof(long long);
+
 	test_lt_vector();
 	test_lt_list();
 	printf("done.");

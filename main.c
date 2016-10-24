@@ -151,6 +151,8 @@ void test_lt_binary_tree(void)
 
 		lt_binary_tree_insert(&tree, s);
 	}
+
+	//lt_binary_tree_free(&tree);
 }
 
 int main(int argc, char** argv)

@@ -28,4 +28,6 @@ void lt_binary_tree_node_init(void* da);
 
 void lt_binary_tree_insert(lt_binary_tree* da, void* node);
 
+void lt_binary_tree_each(lt_binary_tree* da, void (each)(void*, void*), void* data);
+
 #endif // LT_BINARY_TREE_H

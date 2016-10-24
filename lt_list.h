@@ -5,10 +5,10 @@
 
 #define LT_LIST_HEADER lt_list_node header;
 
-typedef struct lt_ll_node
+typedef struct lt_list_node
 {
-	struct lt_ll_node* prev;
-	struct lt_ll_node* next;
+	struct lt_list_node* prev;
+	struct lt_list_node* next;
 } lt_list_node;
 
 typedef struct

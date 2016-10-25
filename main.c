@@ -161,6 +161,6 @@ int main(int argc, char** argv)
 
 	test_lt_vector();
 	test_lt_list();
-	test_lt_binary_tree();
+	//test_lt_binary_tree();
 	printf("done.");
 }
